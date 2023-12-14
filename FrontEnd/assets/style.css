@@ -187,9 +187,67 @@ nav li {
 	font-size: 1.2em;
 }
 
+nav a {
+	color: black;
+	font-size: 16px;
+	text-decoration: none;
+}
+
 li:hover {
 	color: #B1663C;
 }
+
+/* li:visited {
+	font-weight: bold;
+} */
+
+.login-title {
+	display: flex;
+	justify-content: center;
+	margin-top: 150px;
+	margin-bottom: 50px;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	width: 390px;
+}
+
+label {
+	font-weight: 900;
+	color: #3d3d3d;
+}
+
+#email,
+#password {
+	width: 380px;
+	height: 51px;
+	margin-top: 7px;
+	margin-bottom: 30px;
+	background-color: #FFFEF8;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	border-color: transparent;
+}
+
+#email,
+#password:focus {
+	outline: none;
+}
+
+input+p {
+	text-align: center;
+	font-weight: 900;
+}
+
+form a {
+	color: #3d3d3d;
+}
+
+
+
+
 
 #introduction {
 	display: flex;
@@ -302,8 +360,10 @@ input[type="submit"] {
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
+	border-style: none;
 	margin: 2em auto;
 	width: 180px;
+	height: 36px;
 	text-align: center;
 	border-radius: 60px;
 }
