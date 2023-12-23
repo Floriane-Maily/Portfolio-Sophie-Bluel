@@ -20,7 +20,7 @@
             <ul>
                 <li>projets</li>
                 <li>contact</li>
-                <li>login</li>
+                <li class="active">login</li>
                 <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
             </ul>
         </nav>
@@ -28,7 +28,7 @@
     <div class="login-title">
         <h2>Log In</h2>
     </div>
-    <form method="get" action="http://localhost:5678/api/" class="login-form">
+    <form method="post" action="http://localhost:5678/api/users/login" class="login-form">
         <p>
             <label for="email">E-mail</label><input type="text" name="email" id="email" autofocus>
             <label for="password">Mot de passe</label><input type="text" name="password" id="password" autofocus>
