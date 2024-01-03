@@ -17,11 +17,9 @@ paths:
               type: object
               properties:
                 email: 
-                  type: string
-                  # example: sophie.bluel@test.tld
+                  type: string                
                 password: 
                   type: string
-                  # example: S0phie
       responses:
         '200':
           description: Connected
