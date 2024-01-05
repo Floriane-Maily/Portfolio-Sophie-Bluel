@@ -4,28 +4,40 @@ loginForm.addEventListener("submit", function (event) {
     event.preventDefault()
 })
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR-M-5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY1MTg3NDkzOSwiZXhwIjoxNjUxOTYxMzM5fQ.JGN1p8YIfR - M - 5eQ-Ypy6Ima5cKA4VbfL2xMr2MgHm4"
 const url = "http://localhost:5678/api/users/login"
 const data = {
     email: "sophie.bluel@test.tld",
     password: "S0phie"
 }
 
-const response = await fetch(url, {
+fetch(url, {
     method: "POST",
     headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        'accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify(data)
 })
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            return response.json()
+        }
+        else {
+            throw new Error(response.status)
+        }
+    })
     .then(data => console.log(data))
+localStorage.setItem("token", token)
     .catch((error) => {
-        console.error('Error:', error);
+        console.error('erreur', error)
     })
 
-window.localStorage.setItem("token", token)
+
+
+
+
 
 
 
