@@ -135,11 +135,41 @@ table {
 }
 
 /** end reset css**/
+
 body {
-	max-width: 1140px;
-	margin: auto;
 	font-family: 'Work Sans';
 	font-size: 14px;
+}
+
+/* bannière mode édition */
+.black-banner {
+	display: flex;
+	justify-content: center;
+	background-color: black;
+	height: 59px;
+	margin: 0;
+	display: none;
+}
+
+.edition-mode {
+	display: inline-flex;
+	margin: auto;
+	align-items: center;
+	width: 129px;
+	height: 29px;
+	gap: 10px;
+}
+
+.edition-mode p {
+	color: #FFFFFF;
+	text-align: left;
+}
+
+/* fin bannière */
+
+.main-container {
+	max-width: 1140px;
+	margin: auto;
 }
 
 header {
@@ -195,6 +225,11 @@ nav a {
 
 li a:hover {
 	color: #B1663C;
+}
+
+/* logout mode édition */
+li .logout {
+	display: none;
 }
 
 li.active {
@@ -276,6 +311,23 @@ form a {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+}
+
+/* mode édition des projets */
+.modify-projects {
+	position: relative;
+	left: 700px;
+	bottom: 165px;
+	display: inline-flex;
+	width: 84px;
+	height: 18px;
+	gap: 10px;
+	display: none;
+}
+
+.modify-projects p {
+	padding-top: 3px;
+	color: initial;
 }
 
 #portfolio .buttons {

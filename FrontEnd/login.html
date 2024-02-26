@@ -11,36 +11,38 @@
         href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap">
     <meta name="description" content="">
     <link rel="stylesheet" href="./assets/style.css">
+    <script src="./assets/JS/login.js" defer></script>
 
 </head>
 
 <body>
-    <header>
-        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-        <nav>
-            <ul>
-                <li>projets</li>
-                <li>contact</li>
-                <li class="active">login</li>
-                <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-            </ul>
-        </nav>
-    </header>
-    <div class="login-title">
-        <h2>Log In</h2>
+    <div class="main-container">
+        <header>
+            <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+            <nav>
+                <ul>
+                    <li>projets</li>
+                    <li>contact</li>
+                    <li class="active">login</li>
+                    <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="login-title">
+            <h2>Log In</h2>
+        </div>
+        <form class="login-form" method="" action="">
+            <p>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" autofocus required>
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password" autocomplete="on" autofocus required>
+            </p>
+            <input type="submit" value="Se connecter">
+            <p><a href="">Mot de passe oublié</a></p>
+        </form>
+
     </div>
-    <form class="login-form" method="post" action="http://localhost:5678/api/users/login">
-        <p>
-            <label for="email">E-mail</label>
-            <input type="email" name="email" id="email" autofocus required>
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" autocomplete="on" autofocus required>
-        </p>
-        <input type="submit" value="Se connecter">
-        <p><a href="">Mot de passe oublié</a></p>
-    </form>
-
-
 </body>
 
 </html>
