@@ -4,7 +4,7 @@ const url = "http://localhost:5678/api/users/login"
 const emailLogin = document.getElementById("email")
 const passwordLogin = document.getElementById("password")
 
-// Envoi du formulaire et récupération des données dans l'API 
+// Envoi du formulaire et récupération des données de connexion dans l'API 
 loginForm.addEventListener("submit", async function (event) {
     event.preventDefault()
     try {
@@ -20,18 +20,20 @@ loginForm.addEventListener("submit", async function (event) {
             })
         })
 
-        // Si email & mdp valides, générer le token et le sauvegarder dans le localstorage
+        // Si email & mdp valides, générer le token et le sauvegarder dans le localstorage 
         if (response.status === 200) {
             const data = await response.json()
             localStorage.setItem("token", data.token)
-            window.location.href = "http://127.0.0.1:5500/FrontEnd/index.html"
-            // Sinon, envoyer message d'erreur
+            window.location.href = "/FrontEnd/index.html"
         } else {
             throw new Error(response.status)
         }
+        // Sinon, afficher message d'erreur à l'utilisateur
     } catch (error) {
-        console.error('erreur', error)
-
+        const errorMessage = document.querySelector(".error-message")
+        errorMessage.style.display = "flex"
     }
-
 })
+
+
+

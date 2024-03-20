@@ -141,7 +141,7 @@ body {
 	font-size: 14px;
 }
 
-/* bannière mode édition */
+/* mode édition bannière */
 .black-banner {
 	display: flex;
 	justify-content: center;
@@ -165,7 +165,65 @@ body {
 	text-align: left;
 }
 
-/* fin bannière */
+/* mode édition projets / modale */
+.modify-projects {
+	display: inline-flex;
+	position: relative;
+	left: 700px;
+	bottom: 53px;
+	width: 85px;
+	height: 18px;
+	gap: 10px;
+	text-decoration: none;
+	display: none;
+}
+
+.modify-projects p {
+	padding-top: 3px;
+	color: initial;
+}
+
+.modal-container {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+#modal {
+	position: absolute;
+	top: 400px;
+	left: 405px;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	width: 630px;
+	height: 688px;
+}
+
+.bin-icon {
+	display: flex;
+	background-color: black;
+	height: 17px;
+	width: 17px;
+	border-radius: 2px;
+}
+
+.bin-icon img {
+	margin: auto;
+}
+
+/* fin mode édition */
 
 .main-container {
 	max-width: 1140px;
@@ -227,11 +285,6 @@ li a:hover {
 	color: #B1663C;
 }
 
-/* logout mode édition */
-li .logout {
-	display: none;
-}
-
 li.active {
 	font-weight: bold;
 }
@@ -248,6 +301,10 @@ li.active {
 	flex-direction: column;
 	margin: auto;
 	width: 390px;
+}
+
+form a {
+	color: #3d3d3d;
 }
 
 label {
@@ -276,10 +333,33 @@ input+p {
 	font-weight: 900;
 }
 
-form a {
-	color: #3d3d3d;
+/* message d'erreur page de connexion */
+.error-message {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	border: solid 3px crimson;
+	background-color: rgb(220, 20, 60, 0.55);
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+	margin: auto;
+	width: 350px;
+	height: 51px;
+	margin-top: 7px;
+	margin-bottom: 30px;
+	gap: 20px;
+	display: none
 }
 
+.error-message img {
+	width: 25px;
+	height: 25px;
+}
+
+/* logout mode édition */
+li .logout {
+	display: none;
+}
 
 #introduction {
 	display: flex;
@@ -311,23 +391,6 @@ form a {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
-}
-
-/* mode édition des projets */
-.modify-projects {
-	position: relative;
-	left: 700px;
-	bottom: 165px;
-	display: inline-flex;
-	width: 84px;
-	height: 18px;
-	gap: 10px;
-	display: none;
-}
-
-.modify-projects p {
-	padding-top: 3px;
-	color: initial;
 }
 
 #portfolio .buttons {

@@ -51,7 +51,7 @@ fetch("http://localhost:5678/api/works")
         genererWorks(works)
     })
 
-// Sélection de tous les boutons filtres et déclaration de la fonction resetColors 
+// Déclaration de la fonction resetColors pour les btn filtres
 const buttons = document.querySelectorAll("button")
 function resetColors() {
     buttons.forEach(button => {
@@ -70,7 +70,7 @@ buttons.forEach(button => {
 })
 
 
-// Au clic sur chaque bouton : filtre des travaux par catégorie 
+// Au clic sur chaque btn : filtre des travaux par catégorie / 1er btn = toutes les catégories 
 btnTous.addEventListener("click", () => {
     console.log(works)
     genererWorks(works)
@@ -93,6 +93,25 @@ btnHotelsRestos.addEventListener("click", () => {
     genererWorks(hotelRestos)
 })
 
+// Passage au mode édition si utilisateur connecté (token généré)
+if (localStorage.getItem("token")) {
+    const login = document.querySelector(".login")
+    const logout = document.querySelector(".logout")
+    const blackBanner = document.querySelector(".black-banner")
+    const modifyProjects = document.querySelector(".modify-projects")
+
+    login.style.display = "none"
+    logout.style.display = "flex"
+    blackBanner.style.display = "flex"
+    modifyProjects.style.display = "inline-flex"
+    btnFiltres.style.display = "none"
+}
+
+// logout
+const logout = document.querySelector(".logout")
+logout.addEventListener("click", () => {
+    localStorage.removeItem("token")
+})
 
 
 

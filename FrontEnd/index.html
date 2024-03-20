@@ -12,9 +12,24 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="./assets/JS/script.js" defer></script>
+	<script src="./assets/JS/modale.js" defer></script>
 </head>
 
 <body>
+	<!-- Modale -->
+	<!-- <aside class="modal-container" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="title-modal">
+		<div class="overlay modal-trigger"></div>
+		<div id="modal">
+			<button class="close-modal modal-trigger">X</button>
+			<h1 id="title-modal">Galerie Photo</h1> -->
+	<!-- WORKS JS-->
+	<!-- <div class="bin-icon">
+				<img src="./assets/icons/Bin.svg" alt="supprimer la photo">
+			</div>
+			<button class="add-picture">Ajouter photo</button>
+		</div>
+	</aside> -->
+
 	<!-- bannière mode édition -->
 	<div class="black-banner">
 		<div class="edition-mode">
@@ -30,9 +45,9 @@
 				<ul>
 					<li><a href="#projets">projets</a></li>
 					<li><a href="#Contact">contact</a></li>
-					<li><a href=login.html>login</a></li>
+					<li><a class="login" href=login.html>login</a></li>
 					<!--logout du mode édition-->
-					<li><a class="logout" href="">logout</a></li>
+					<li><a class="logout" href="index.html">logout</a></li>
 					<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 				</ul>
 			</nav>
@@ -58,12 +73,12 @@
 			<section id="portfolio">
 				<h2 id="projets">Mes Projets</h2>
 				<!-- mode edition des projets-->
-				<a href="#" class="modify">
-					<div class="modify-projects">
+				<div>
+					<a href="#modal" class="modify-projects">
 						<img src="./assets/icons/Group.png" alt="cliquer pour modifier les projets">
 						<p>Modifier</p>
-					</div>
-				</a>
+					</a>
+				</div>
 				<div class="gallery"></div>
 			</section>
 			<section id="contact">
