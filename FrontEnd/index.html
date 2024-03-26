@@ -17,18 +17,19 @@
 
 <body>
 	<!-- Modale -->
-	<!-- <aside class="modal-container" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="title-modal">
+	<aside class="modal-container" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="title-modal">
 		<div class="overlay modal-trigger"></div>
 		<div id="modal">
-			<button class="close-modal modal-trigger">X</button>
-			<h1 id="title-modal">Galerie Photo</h1> -->
-	<!-- WORKS JS-->
-	<!-- <div class="bin-icon">
+			<button class="close-modal modal-trigger">
+				<img src="./assets/icons/xmark.svg">
+			</button>
+			<p id="title-modal">Galerie Photo</p>
+			<div class="bin-icon">
 				<img src="./assets/icons/Bin.svg" alt="supprimer la photo">
 			</div>
-			<button class="add-picture">Ajouter photo</button>
+			<button class="add-picture">Ajouter une photo</button>
 		</div>
-	</aside> -->
+	</aside>
 
 	<!-- bannière mode édition -->
 	<div class="black-banner">
@@ -74,7 +75,7 @@
 				<h2 id="projets">Mes Projets</h2>
 				<!-- mode edition des projets-->
 				<div>
-					<a href="#modal" class="modify-projects">
+					<a href="#modal" id="open-modal">
 						<img src="./assets/icons/Group.png" alt="cliquer pour modifier les projets">
 						<p>Modifier</p>
 					</a>

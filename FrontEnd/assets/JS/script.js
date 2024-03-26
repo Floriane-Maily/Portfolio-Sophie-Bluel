@@ -1,7 +1,7 @@
 // Créations des 4 boutons filtres dans le DOM
 const sectionPortfolio = document.getElementById("portfolio")
 const btnFiltres = document.createElement("div")
-btnFiltres.classList.add("buttons")
+btnFiltres.classList.add("filter-buttons")
 const btnTous = document.createElement("button")
 btnTous.classList.add("btn_tous")
 btnTous.innerText = "Tous"
@@ -52,16 +52,16 @@ fetch("http://localhost:5678/api/works")
     })
 
 // Déclaration de la fonction resetColors pour les btn filtres
-const buttons = document.querySelectorAll("button")
+const filterButtons = Array.from(document.querySelectorAll(".filter-buttons button"))
 function resetColors() {
-    buttons.forEach(button => {
+    filterButtons.forEach(button => {
         button.style.color = "initial"
         button.style.backgroundColor = "initial"
     })
 }
 
 // Au clic sur un bouton : le style change et les autres boutons reprennent le style initial avec l'appel de la fonction resetColors
-buttons.forEach(button => {
+filterButtons.forEach(button => {
     button.addEventListener("click", function () {
         resetColors()
         button.style.color = "#FFFEF8"
@@ -70,7 +70,7 @@ buttons.forEach(button => {
 })
 
 
-// Au clic sur chaque btn : filtre des travaux par catégorie / 1er btn = toutes les catégories 
+// Au clic sur chaque btn : filtre des travaux par catégorie / btnTous = toutes les catégories 
 btnTous.addEventListener("click", () => {
     console.log(works)
     genererWorks(works)
@@ -98,12 +98,12 @@ if (localStorage.getItem("token")) {
     const login = document.querySelector(".login")
     const logout = document.querySelector(".logout")
     const blackBanner = document.querySelector(".black-banner")
-    const modifyProjects = document.querySelector(".modify-projects")
+    const openModal = document.getElementById("open-modal")
 
     login.style.display = "none"
     logout.style.display = "flex"
     blackBanner.style.display = "flex"
-    modifyProjects.style.display = "inline-flex"
+    openModal.style.display = "flex"
     btnFiltres.style.display = "none"
 }
 
@@ -114,6 +114,20 @@ logout.addEventListener("click", () => {
 })
 
 
+//Ouvrir modale
+const modal = document.querySelector(".modal-container")
+const openModal = document.getElementById("open-modal")
+openModal.addEventListener("click", () => {
+    modal.style.display = "flex"
+    genererWorks(works)
+
+})
+
+// Fermer modale
+const closeModal = document.querySelector(".close-modal")
+closeModal.addEventListener("click", () => {
+    modal.style.display = "none"
+})
 
 
 
