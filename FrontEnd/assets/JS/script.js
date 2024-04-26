@@ -1,30 +1,6 @@
-// Créations des 4 boutons filtres dans le DOM
-const sectionPortfolio = document.getElementById("portfolio")
-const btnFiltres = document.createElement("div")
-btnFiltres.classList.add("filter-buttons")
-const btnTous = document.createElement("button")
-btnTous.classList.add("btn_tous")
-btnTous.innerText = "Tous"
-const btnObjets = document.createElement("button")
-btnObjets.classList.add("btn_objets")
-btnObjets.innerText = "Objets"
-const btnAppartements = document.createElement("button")
-btnAppartements.classList.add("btn_appartements")
-btnAppartements.innerText = "Appartements"
-const btnHotelsRestos = document.createElement("button")
-btnHotelsRestos.classList.add("btn_hotels_restos")
-btnHotelsRestos.innerText = "Hôtels & restaurants"
 
-sectionPortfolio.appendChild(btnFiltres)
-sectionPortfolio.insertBefore(btnFiltres, sectionPortfolio.childNodes[2])
-btnFiltres.appendChild(btnTous)
-btnFiltres.appendChild(btnObjets)
-btnFiltres.appendChild(btnAppartements)
-btnFiltres.appendChild(btnHotelsRestos)
-
-
-// Création des travaux dans le DOM + déclaration fonction genererWorks
-function genererWorks(works) {
+// Création des projets (works) dans le DOM
+function generateWorks(works) {
     const gallery = document.querySelector(".gallery")
     gallery.innerHTML = ''
     for (let i = 0; i < works.length; i++) {
@@ -35,63 +11,87 @@ function genererWorks(works) {
         imageElement.alt = projects.title
         const imageElementCaption = document.createElement("figcaption")
         imageElementCaption.innerText = projects.title
-
         gallery.appendChild(workElement)
         workElement.appendChild(imageElement)
         workElement.appendChild(imageElementCaption)
     }
 }
 
+// Récupération des projets (works) via l'API + catégories en paramètre pour les filtres
+async function fetchWorks(categoryId) {
+    const response = await fetch("http://localhost:5678/api/works")
+    const works = await response.json()
+    if (categoryId) {
+        const worksFiltered = works.filter(work => work.categoryId === categoryId)
+        generateWorks(worksFiltered)
+    }
+    else {
+        generateWorks(works)
+    }
+}
+fetchWorks()
 
-// Récupération des travaux via l'API + appel de la fonction genererWorks
-fetch("http://localhost:5678/api/works")
-    .then(response => response.json())
-    .then(data => {
-        works = data
-        genererWorks(works)
-    })
 
-// Déclaration de la fonction resetColors pour les btn filtres
-const filterButtons = Array.from(document.querySelectorAll(".filter-buttons button"))
-function resetColors() {
-    filterButtons.forEach(button => {
-        button.style.color = "initial"
-        button.style.backgroundColor = "initial"
+// Création de la div contenant les boutons filtres dans le DOM
+const sectionPortfolio = document.getElementById("portfolio")
+const filterButtons = document.createElement("div")
+filterButtons.classList.add("filter-buttons")
+sectionPortfolio.appendChild(filterButtons)
+sectionPortfolio.insertBefore(filterButtons, sectionPortfolio.childNodes[2])
+
+
+// Fonction resetColors pour les boutons filtres
+const resetFiltersColor = document.querySelectorAll("#Portfolio button")
+function resetColors(selectedButton) {
+    resetFiltersColor.forEach(button => {
+        if (button !== selectedButton) {
+            button.style.color = "initial"
+            button.style.backgroundColor = "initial"
+        }
     })
 }
 
-// Au clic sur un bouton : le style change et les autres boutons reprennent le style initial avec l'appel de la fonction resetColors
-filterButtons.forEach(button => {
-    button.addEventListener("click", function () {
-        resetColors()
-        button.style.color = "#FFFEF8"
-        button.style.backgroundColor = "#1D6154"
+// Création des catégories dans le DOM + création bouton "Tous"
+function generateCategories(categories) {
+    const filterButtons = document.querySelector(".filter-buttons")
+    filterButtons.innerHTML = ''
+    const allCategories = document.createElement("button")
+    allCategories.innerText = "Tous"
+    filterButtons.appendChild(allCategories)
+    allCategories.addEventListener("click", () => {
+        fetchWorks()
     })
-})
+
+    for (let i = 0; i < categories.length; i++) {
+        const projectsCategories = categories[i]
+        const categoryElement = document.createElement("button")
+        categoryElement.innerText = projectsCategories.name
+        filterButtons.appendChild(categoryElement)
+        // Au clic sur un bouton : les autres boutons reprennent leur couleur initiale avec appel de la fonction resetColors
+        categoryElement.addEventListener("click", () => {
+            const galleryByCategory = document.querySelector(".gallery")
+            galleryByCategory.innerHTML = ''
+            categoryElement.style.color = "#FFFEF8"
+            categoryElement.style.backgroundColor = "#1D6154"
+
+            fetchWorks(projectsCategories.id)
+            resetColors(categoryElement)
+        })
+    }
+}
 
 
-// Au clic sur chaque btn : filtre des travaux par catégorie / btnTous = toutes les catégories 
-btnTous.addEventListener("click", () => {
-    console.log(works)
-    genererWorks(works)
-})
+// Récupération des catégories via l'API 
+async function fetchCategories() {
+    const response = await fetch("http://localhost:5678/api/categories")
+    const categories = await response.json()
+    generateCategories(categories)
+}
+fetchCategories()
 
-btnObjets.addEventListener("click", () => {
-    const objets = works.filter(work => work.categoryId === 1)
-    console.log(objets)
-    genererWorks(objets)
-})
 
-btnAppartements.addEventListener("click", () => {
-    const appartements = works.filter(work => work.categoryId === 2)
-    console.log(appartements)
-    genererWorks(appartements)
-})
-btnHotelsRestos.addEventListener("click", () => {
-    const hotelRestos = works.filter(work => work.categoryId === 3)
-    console.log(hotelRestos)
-    genererWorks(hotelRestos)
-})
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // Passage au mode édition si utilisateur connecté (token généré)
 if (localStorage.getItem("token")) {
@@ -104,7 +104,7 @@ if (localStorage.getItem("token")) {
     logout.style.display = "flex"
     blackBanner.style.display = "flex"
     openModal.style.display = "flex"
-    btnFiltres.style.display = "none"
+    filterButtons.style.display = "none"
 }
 
 // logout
@@ -114,20 +114,7 @@ logout.addEventListener("click", () => {
 })
 
 
-//Ouvrir modale
-const modal = document.querySelector(".modal-container")
-const openModal = document.getElementById("open-modal")
-openModal.addEventListener("click", () => {
-    modal.style.display = "flex"
-    genererWorks(works)
 
-})
-
-// Fermer modale
-const closeModal = document.querySelector(".close-modal")
-closeModal.addEventListener("click", () => {
-    modal.style.display = "none"
-})
 
 
 

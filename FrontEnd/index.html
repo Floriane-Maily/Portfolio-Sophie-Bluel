@@ -16,25 +16,42 @@
 </head>
 
 <body>
-	<!-- Modale -->
-	<aside class="modal-container" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="title-modal">
+
+	<!-- Modale 1 -->
+	<aside class="modal-container" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="modal-title">
 		<div class="overlay modal-trigger"></div>
-		<div id="modal">
+		<div id="modal1">
 			<button class="close-modal modal-trigger">
 				<img src="./assets/icons/xmark.svg">
 			</button>
-			<p id="title-modal">Galerie Photo</p>
-			<div class="bin-icon">
-				<img src="./assets/icons/Bin.svg" alt="supprimer la photo">
+			<p id="modal-title">Galerie Photo</p>
+			<div class="modal-gallery">
 			</div>
+			<div class="borderline"></div>
 			<button class="add-picture">Ajouter une photo</button>
 		</div>
 	</aside>
+	<!-- Modale 2 -->
+	<aside class="modal-container2" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="modal-title">
+		<div class="overlay modal-trigger"></div>
+		<div id="modal2">
+			<button class="close-modal modal-trigger">
+				<img src="./assets/icons/xmark.svg">
+			</button>
+			<p id="modal-title">Ajout photo</p>
+			<div class="upload-icon">
+				<img src="./assets/icons/upload-icon.svg">
+				<button class="upload-button">+ Ajouter photo</button>
+			</div>
+			<button class="add-picture">Valider</button>
+		</div>
+	</aside>
+
 
 	<!-- bannière mode édition -->
 	<div class="black-banner">
 		<div class="edition-mode">
-			<img src="./assets/icons/Vector.png" alt="mode édition">
+			<img src="./assets/icons/edition-white.svg" alt="mode édition">
 			<p>Mode édition</p>
 		</div>
 	</div>
@@ -45,7 +62,7 @@
 			<nav>
 				<ul>
 					<li><a href="#projets">projets</a></li>
-					<li><a href="#Contact">contact</a></li>
+					<li><a href="#contact">contact</a></li>
 					<li><a class="login" href=login.html>login</a></li>
 					<!--logout du mode édition-->
 					<li><a class="logout" href="index.html">logout</a></li>
@@ -72,18 +89,20 @@
 				</article>
 			</section>
 			<section id="portfolio">
-				<h2 id="projets">Mes Projets</h2>
-				<!-- mode edition des projets-->
-				<div>
-					<a href="#modal" id="open-modal">
-						<img src="./assets/icons/Group.png" alt="cliquer pour modifier les projets">
-						<p>Modifier</p>
-					</a>
+				<div class="projects">
+					<h2>Mes Projets</h2>
+					<!-- mode edition des projets-->
+					<div id="open-modal">
+						<a href="#modal1">
+							<img src="./assets/icons/edition.svg" alt="cliquer pour modifier les projets">
+							<p>Modifier</p>
+						</a>
+					</div>
 				</div>
 				<div class="gallery"></div>
 			</section>
 			<section id="contact">
-				<h2 id="Contact">Contact</h2>
+				<h2 id="contact">Contact</h2>
 				<p>Vous avez un projet ? Discutons-en !</p>
 				<form action="#" method="post">
 					<label for="name">Nom</label>
